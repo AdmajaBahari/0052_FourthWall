@@ -1,6 +1,4 @@
-package com.fourthwall.data.model
-
-import com.google.gson.annotations.SerializedName
+package com.example.fourthwall.data.model
 
 // Request models
 data class RegisterRequest(

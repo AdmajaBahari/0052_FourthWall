@@ -1,6 +1,6 @@
-package com.fourthwall.data.remote
+package com.example.fourthwall.data.remote
 
-import com.fourthwall.data.model.*
+import com.example.fourthwall.data.model.*
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
