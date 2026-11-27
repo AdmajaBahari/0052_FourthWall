@@ -22,12 +22,12 @@ fun AppNavHost(
     ) {
         composable(Routes.LOGIN) {
             LoginScreen(
-                onLoginClick = {
+                onLoginSuccess = {
                     navController.navigate(Routes.HOME) {
                         popUpTo(Routes.LOGIN) { inclusive = true }
                     }
                 },
-                onGoToRegister = { navController.navigate(Routes.REGISTER) }
+                onNavigateToRegister = { navController.navigate(Routes.REGISTER) }
             )
         }
         composable(Routes.REGISTER) {
