@@ -55,7 +55,7 @@ FourthWall membantu pembaca manhwa mencatat sampai chapter berapa mereka membaca
 | Backend dan koneksi database | Selesai | 1 |
 | Register (API) | Selesai | 1 |
 | Login dengan JWT (API) | Selesai | 1 |
-| Kerangka MVVM dan Navigation Compose | Belum diverifikasi | 1 |
+| Kerangka MVVM dan Navigation Compose | Selesai sebagai kerangka | 1 |
 | UI login/register dengan validasi | Belum | 2 |
 | Refresh token dan UI per role | Belum | 2 |
 | CRUDS Manhwa dan Genre (Admin) | Belum | 3 |
