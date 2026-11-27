@@ -1,7 +1,9 @@
 package com.example.fourthwall.viewmodel
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.fourthwall.data.local.TokenManager
 import com.example.fourthwall.data.model.LoginResponse
 import com.example.fourthwall.data.model.RegisterResponse
 import com.example.fourthwall.repository.AuthRepository
@@ -18,9 +20,10 @@ data class AuthUiState(
     val registerResponse: RegisterResponse? = null
 )
 
-class AuthViewModel : ViewModel() {
+class AuthViewModel(application: Application) : AndroidViewModel(application) {
 
     private val authRepository = AuthRepository()
+    private val tokenManager = TokenManager(application)
 
     private val _uiState = MutableStateFlow(AuthUiState())
     val uiState: StateFlow<AuthUiState> = _uiState.asStateFlow()
@@ -38,11 +41,25 @@ class AuthViewModel : ViewModel() {
         viewModelScope.launch {
             val result = authRepository.login(email, password)
             result.onSuccess { response ->
-                _uiState.value = _uiState.value.copy(
-                    isLoading = false,
-                    isSuccess = true,
-                    loginResponse = response
-                )
+                try {
+                    // Token disimpan dulu, baru UI diberi tahu sukses dan pindah halaman.
+                    tokenManager.saveSession(
+                        accessToken = response.accessToken,
+                        refreshToken = response.refreshToken,
+                        user = response.user
+                    )
+                    _uiState.value = _uiState.value.copy(
+                        isLoading = false,
+                        isSuccess = true,
+                        loginResponse = response
+                    )
+                } catch (e: Exception) {
+                    _uiState.value = _uiState.value.copy(
+                        isLoading = false,
+                        isSuccess = false,
+                        errorMessage = "Gagal menyimpan sesi login"
+                    )
+                }
             }.onFailure { exception ->
                 _uiState.value = _uiState.value.copy(
                     isLoading = false,
