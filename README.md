@@ -50,7 +50,7 @@ FourthWall membantu pembaca manhwa mencatat sampai chapter berapa mereka membaca
 |---|---|---|
 | Setup repo dan project Android | Selesai | 1 |
 | README awal | Selesai | 1 |
-| ERD 6 entitas | Belum diverifikasi | 1 |
+| ERD 6 entitas | Selesai | 1 |
 | Skema database MySQL | Selesai | 1 |
 | Backend dan koneksi database | Selesai | 1 |
 | Register (API) | Selesai | 1 |
@@ -69,7 +69,7 @@ FourthWall membantu pembaca manhwa mencatat sampai chapter berapa mereka membaca
 
 | Minggu | Pekerjaan | Status |
 |---|---|---|
-| 1 | Skema database dibuat; koneksi backend, register, dan login diuji. ERD serta kerangka Android masih perlu diverifikasi. | Berjalan |
+| 1 | Fondasi: ERD, skema database MySQL, backend Express + Sequelize, register/login JWT (diuji di Postman), kerangka Android (MVVM + Navigation Compose) | Selesai |
 | 2 | Auth dan Role | Belum |
 | 3 | Katalog | Belum |
 | 4 | Progres Baca | Belum |
