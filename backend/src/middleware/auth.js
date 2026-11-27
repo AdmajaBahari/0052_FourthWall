@@ -32,4 +32,24 @@ function requireRole(...roles) {
   };
 }
 
-module.exports = { verifyToken, requireRole };
+async function profile(req, res) {
+  try {
+    const user = await User.findByPk(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User tidak ditemukan' });
+    }
+
+    return res.json({
+      id: user.id,
+      nama: user.nama,
+      email: user.email,
+      role: user.role,
+    });
+  } catch (err) {
+    return res.status(500).json({ message: 'Terjadi kesalahan server' });
+  }
+}
+
+
+module.exports = { register, login, refresh, profile };
+
