@@ -1,70 +1,77 @@
-# ERD FourthWall
+# FourthWall
 
-6 entitas utama dan 1 tabel penghubung, sesuai `backend/database/schema.sql`.
+Aplikasi mobile untuk mencatat progres baca dan catatan pribadi manhwa.
 
-```mermaid
-erDiagram
-    USERS {
-        int id PK
-        varchar nama
-        varchar email UK
-        varchar password_hash
-        enum role "admin | user"
-    }
-    GENRES {
-        int id PK
-        varchar nama UK
-    }
-    MANHWA {
-        int id PK
-        int genre_id FK
-        varchar judul
-        varchar author
-        text sinopsis
-        varchar cover_path
-    }
-    PROGRES_BACA {
-        int id PK
-        int user_id FK
-        int manhwa_id FK
-        int chapter_terakhir
-        enum status "Reading | Completed | On Hold | Dropped"
-    }
-    CATATAN {
-        int id PK
-        int user_id FK
-        int manhwa_id FK
-        varchar judul
-        text isi
-    }
-    KOLEKSI {
-        int id PK
-        int user_id FK
-        varchar nama
-        text deskripsi
-    }
-    KOLEKSI_MANHWA {
-        int koleksi_id PK, FK
-        int manhwa_id PK, FK
-    }
+Project Akhir mata kuliah Pengembangan Aplikasi Mobile (PAM) 2026  
+Program Studi Teknologi Informasi, Universitas Muhammadiyah Yogyakarta (UMY)
 
-    GENRES ||--o{ MANHWA : "memiliki"
-    USERS ||--o{ PROGRES_BACA : "memiliki"
-    MANHWA ||--o{ PROGRES_BACA : "dilacak dalam"
-    USERS ||--o{ CATATAN : "menulis"
-    MANHWA ||--o{ CATATAN : "dicatat pada"
-    USERS ||--o{ KOLEKSI : "membuat"
-    KOLEKSI ||--o{ KOLEKSI_MANHWA : "berisi"
-    MANHWA ||--o{ KOLEKSI_MANHWA : "masuk ke"
-```
+**Nama:** Admaja Bahari  
+**Tema:** Hiburan
 
-## Aturan Penting
+## Deskripsi
 
-| Aturan | Implementasi |
+FourthWall membantu pembaca manhwa mencatat sampai chapter berapa mereka membaca, menyimpan catatan pribadi, dan mengelompokkan manhwa ke dalam koleksi. Katalog manhwa dan genre dikelola oleh Admin, sedangkan progres, catatan, dan koleksi dikelola oleh masing-masing User.
+
+## Role
+
+| Role | Hak akses |
 |---|---|
-| Satu manhwa punya satu genre utama | `manhwa.genre_id` wajib diisi |
-| Genre yang masih dipakai tidak bisa dihapus | `ON DELETE RESTRICT` |
-| Satu user hanya punya satu progres per manhwa | `UNIQUE (user_id, manhwa_id)` |
-| Koleksi dan manhwa many-to-many | Tabel `koleksi_manhwa` dengan primary key gabungan |
-| Data pribadi punya pemilik | `user_id` pada progres, catatan, dan koleksi |
-| Password tidak disimpan polos | `password_hash` (bcrypt) |
+| Admin | Mengelola katalog Manhwa dan Genre |
+| User | Mengelola Progres Baca, Catatan, dan Koleksi miliknya sendiri |
+
+## Entitas Data
+
+1. User
+2. Manhwa
+3. Genre
+4. Progres Baca (status: Reading, Completed, On Hold, Dropped)
+5. Catatan
+6. Koleksi (relasi many-to-many dengan Manhwa)
+
+## Tech Stack
+
+- Android: Kotlin, Jetpack Compose, Navigation Compose, arsitektur MVVM
+- Backend: REST API (JSON)
+- Database: MySQL
+- Autentikasi: JWT (access token dan refresh token)
+- Penyimpanan file: cover manhwa di storage lokal
+
+## Struktur Repo
+
+    FourthWall-App/
+    |-- app/       -> aplikasi Android (Jetpack Compose)
+    |-- backend/   -> REST API dan database
+    |-- docs/      -> ERD dan dokumen pendukung
+    |-- README.md
+
+## Status Fitur
+
+| Fitur | Status | Minggu |
+|---|---|---|
+| Setup repo dan project Android | Selesai | 1 |
+| README awal | Selesai | 1 |
+| | [ERD 6 entitas](docs/ERD.md) | Selesai | 1 |
+| Skema database MySQL | Selesai | 1 |
+| Backend dan koneksi database | Selesai | 1 |
+| Register (API) | Selesai | 1 |
+| Login dengan JWT (API) | Selesai | 1 |
+| Kerangka MVVM dan Navigation Compose | Belum diverifikasi | 1 |
+| UI login/register dengan validasi | Belum | 2 |
+| Refresh token dan UI per role | Belum | 2 |
+| CRUDS Manhwa dan Genre (Admin) | Belum | 3 |
+| Upload dan tampil cover | Belum | 3 |
+| CRUDS Progres Baca | Belum | 4 |
+| CRUDS Catatan | Belum | 5 |
+| CRUDS Koleksi | Belum | 5 |
+| Finalisasi, validasi, dan error handling | Belum | 6 |
+
+## Log Mingguan
+
+| Minggu | Pekerjaan | Status |
+|---|---|---|
+| 1 | ERD, skema database, backend, register, login, kerangka MVVM dan navigasi. | Selesai |
+| 2 | Auth dan Role | Belum |
+| 3 | Katalog | Belum |
+| 4 | Progres Baca | Belum |
+| 5 | Catatan dan Koleksi | Belum |
+| 6 | Finalisasi | Belum |
