@@ -1,4 +1,4 @@
-﻿# FourthWall
+# FourthWall
 
 Aplikasi mobile untuk mencatat progres baca dan catatan pribadi manhwa.
 
@@ -50,12 +50,12 @@ FourthWall membantu pembaca manhwa mencatat sampai chapter berapa mereka membaca
 |---|---|---|
 | Setup repo dan project Android | Selesai | 1 |
 | README awal | Selesai | 1 |
-| ERD 6 entitas | Selesai | 1 |
+| ERD 6 entitas | Belum diverifikasi | 1 |
 | Skema database MySQL | Selesai | 1 |
 | Backend dan koneksi database | Selesai | 1 |
 | Register (API) | Selesai | 1 |
 | Login dengan JWT (API) | Selesai | 1 |
-| Kerangka MVVM dan Navigation Compose | Selesai sebagai kerangka | 1 |
+| Kerangka MVVM dan Navigation Compose | Belum diverifikasi | 1 |
 | UI login/register dengan validasi | Belum | 2 |
 | Refresh token dan UI per role | Belum | 2 |
 | CRUDS Manhwa dan Genre (Admin) | Belum | 3 |
@@ -69,7 +69,7 @@ FourthWall membantu pembaca manhwa mencatat sampai chapter berapa mereka membaca
 
 | Minggu | Pekerjaan | Status |
 |---|---|---|
-| 1 | Fondasi: ERD, skema database MySQL, backend Express + Sequelize, register/login JWT (diuji di Postman), kerangka Android (MVVM + Navigation Compose) | Selesai |
+| 1 | Skema database dibuat; koneksi backend, register, dan login diuji. ERD serta kerangka Android masih perlu diverifikasi. | Berjalan |
 | 2 | Auth dan Role | Belum |
 | 3 | Katalog | Belum |
 | 4 | Progres Baca | Belum |
