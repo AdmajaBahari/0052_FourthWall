@@ -81,4 +81,35 @@ async function login(req, res) {
   }
 }
 
-module.exports = { register, login };
+async function refresh(req, res) {
+  try {
+    const { refreshToken } = req.body;
+
+    if (!refreshToken) {
+      return res.status(400).json({ message: 'Refresh token wajib diisi' });
+    }
+
+    let decoded;
+    try {
+      decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
+    } catch (err) {
+      return res.status(401).json({ message: 'Refresh token tidak valid atau kedaluwarsa' });
+    }
+
+    const user = await User.findByPk(decoded.id);
+    if (!user) {
+      return res.status(401).json({ message: 'User tidak ditemukan' });
+    }
+
+    return res.json({
+      accessToken: buatAccessToken(user),
+    });
+  } catch (err) {
+    return res.status(500).json({ message: 'Terjadi kesalahan server' });
+  }
+}
+
+
+module.exports = { register, login, refresh };
+
+
