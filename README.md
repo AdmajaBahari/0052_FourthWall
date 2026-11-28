@@ -50,7 +50,7 @@ FourthWall membantu pembaca manhwa mencatat sampai chapter berapa mereka membaca
 |---|---|---|
 | Setup repo dan project Android | Selesai | 1 |
 | README awal | Selesai | 1 |
-| | [ERD 6 entitas](docs/ERD.md) | Selesai | 1 |
+|[ERD 6 entitas](docs/ERD.md) | Selesai | 1  |
 | Skema database MySQL | Selesai | 1 |
 | Backend dan koneksi database | Selesai | 1 |
 | Register (API) | Selesai | 1 |
